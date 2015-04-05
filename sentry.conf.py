@@ -3,8 +3,9 @@
 # you can inherit and tweak settings to your hearts content.
 from sentry.conf.server import *
 
-import os.path
+import os
 
+import urlparse
 CONF_ROOT = os.path.dirname(__file__)
 
 import dj_database_url
@@ -46,9 +47,23 @@ SERVER_EMAIL = 'root@localhost'
 ## etc. ##
 ###########
 
+redis_url = urlparse.urlparse(os.environ.get('REDIS_URL'))
+
+CACHES = {
+        'default': {
+            'BACKEND': 'redis_cache.RedisCache',
+            'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+            'OPTIONS': {
+                'DB': 0,
+        }
+    }
+}
+SENTRY_CACHE = 'sentry.cache.django.DjangoCache'
+
+
 # If this file ever becomes compromised, it's important to regenerate your SECRET_KEY
 # Changing this value will result in all current sessions being invalidated
-SECRET_KEY = ''
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # http://twitter.com/apps/new
 # It's important that input a callback URL, even if its useless. We have no idea why, consult Twitter.
