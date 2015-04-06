@@ -5,6 +5,9 @@ from sentry.conf.server import *
 
 import os
 
+from psycopg2cffi import compat
+compat.register()
+
 import urlparse
 CONF_ROOT = os.path.dirname(__file__)
 
@@ -20,7 +23,6 @@ SENTRY_URL_PREFIX = ''  # No trailing slash!
 SENTRY_WEB_HOST = '0.0.0.0'
 SENTRY_WEB_PORT = 8080
 SENTRY_WEB_OPTIONS = {
-    'workers': 4,  # the number of gunicorn workers
     'limit_request_line': 0,  # required for raven-js
     'secure_scheme_headers': {'X-FORWARDED-PROTO': 'https'},
 }

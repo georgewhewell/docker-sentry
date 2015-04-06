@@ -1,5 +1,5 @@
 dj-database-url==0.3.0
 dj-redis-url==0.1.4
 django-redis-cache==0.13.0
+psycopg2cffi==2.6.1
 sentry
-psycopg2
