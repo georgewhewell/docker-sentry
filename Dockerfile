@@ -22,6 +22,7 @@ COPY sentry.conf.py sentry.conf.py
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD sentry --config=sentry.conf.py start
+CMD sentry --config=sentry.conf.py celery worker -B & \
+    sentry --config=sentry.conf.py start
 
 EXPOSE 8080

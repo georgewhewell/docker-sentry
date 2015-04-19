@@ -51,17 +51,24 @@ SERVER_EMAIL = 'root@localhost'
 
 redis_url = urlparse.urlparse(os.environ.get('REDIS_URL'))
 
-CACHES = {
-        'default': {
-            'BACKEND': 'redis_cache.RedisCache',
-            'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
-            'OPTIONS': {
-                'DB': 0,
+SENTRY_CACHE = 'sentry.cache.redis.RedisCache'
+SENTRY_REDIS_OPTIONS = {
+    'hosts': {
+        0: {
+            'host': redis_url.hostname,
+            'port': redis_url.port,
+            'timeout': 3,
+            #'password': 'redis auth password'
         }
     }
 }
-SENTRY_CACHE = 'sentry.cache.django.DjangoCache'
 
+CELERY_ALWAYS_EAGER = False
+BROKER_URL = os.environ.get('REDIS_URL')
+
+SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
+
+#SENTRY_TSDB = 'sentry.tsdb.redis.RedisTSDB'
 
 # If this file ever becomes compromised, it's important to regenerate your SECRET_KEY
 # Changing this value will result in all current sessions being invalidated
