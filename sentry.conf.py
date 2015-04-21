@@ -4,11 +4,8 @@
 from sentry.conf.server import *
 
 import os.path
-
-from psycopg2cffi import compat
-compat.register()
-
 import urlparse
+
 CONF_ROOT = os.path.dirname(__file__)
 
 import dj_database_url
@@ -38,8 +35,8 @@ SENTRY_ADMIN_EMAIL = ''
 
 # Generic Redis configuration used as defaults for various things including:
 # Buffers, Quotas, TSDB
-redis_url = urlparse.urlparse(os.environ.get('REDIS_URL'))
 
+redis_url = urlparse.urlparse(os.environ.get('REDIS_URL'))
 SENTRY_REDIS_OPTIONS = {
     'hosts': {
         0: {
@@ -139,7 +136,7 @@ SENTRY_URL_PREFIX = os.environ.get('SENTRY_URL_PREFIX')  # No trailing slash!
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 SENTRY_WEB_HOST = '0.0.0.0'
-SENTRY_WEB_PORT = 9000
+SENTRY_WEB_PORT = 8080
 SENTRY_WEB_OPTIONS = {
     # 'workers': 3,  # the number of gunicorn workers
     # 'secure_scheme_headers': {'X-FORWARDED-PROTO': 'https'},

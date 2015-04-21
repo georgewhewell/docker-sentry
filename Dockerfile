@@ -1,17 +1,15 @@
 FROM phusion/baseimage:0.9.16
 
-RUN add-apt-repository ppa:pypy/ppa && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y \
-        git \
-        pypy \
-        pypy-dev \
-        python-cffi \
+        python \
+        python-dev \
+        libffi-dev \
         libpq-dev \
         libxslt1-dev \
         libxml2-dev
 
-RUN curl https://bootstrap.pypa.io/get-pip.py | pypy
+RUN curl https://bootstrap.pypa.io/get-pip.py | python
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
