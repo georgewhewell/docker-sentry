@@ -1,2 +1,2 @@
 dj-database-url==0.3.0
-sentry[postgres]
+sentry[postgres]==7.5.4
