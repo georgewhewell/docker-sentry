@@ -27,7 +27,7 @@ SENTRY_USE_BIG_INTS = True
 # the beacon documentation for more information.
 
 # SENTRY_ADMIN_EMAIL = 'your.name@example.com'
-SENTRY_ADMIN_EMAIL = ''
+SENTRY_ADMIN_EMAIL = 'georgerw@gmail.com'
 
 ###########
 ## Redis ##
