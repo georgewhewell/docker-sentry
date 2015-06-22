@@ -151,7 +151,7 @@ SENTRY_WEB_OPTIONS = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mandrillapp.com'
-EMAIL_HOST_PASSWORD = env.get_value('SMTP_PASSWORD', default=None)
+EMAIL_HOST_PASSWORD = os.environ.get('SMTP_PASSWORD', None)
 EMAIL_HOST_USER = 'georgerw@gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
