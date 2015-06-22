@@ -150,15 +150,14 @@ SENTRY_WEB_OPTIONS = {
 #  https://docs.djangoproject.com/en/1.3/topics/email/?from=olddocs#e-mail-backends
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'localhost'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_HOST_USER = ''
-EMAIL_PORT = 25
-EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_HOST_PASSWORD = env.get_value('SMTP_PASSWORD', default=None)
+EMAIL_HOST_USER = 'georgerw@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # The email address to send on behalf of
-SERVER_EMAIL = 'root@localhost'
+SERVER_EMAIL = 'georgerw@gmail.com'
 
 # If you're using mailgun for inbound mail, set your API key and configure a
 # route to forward to /api/hooks/mailgun/inbound/
