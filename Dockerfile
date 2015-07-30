@@ -21,6 +21,6 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD sentry --config=sentry.conf.py celery worker -B & \
-    sentry --config=sentry.conf.py start --upgrade
+    sentry --config=sentry.conf.py start --upgrade --noinput
 
 EXPOSE 8080
